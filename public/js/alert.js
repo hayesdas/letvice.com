@@ -1,0 +1,1 @@
+$("#add_to_basket").click((function(){alert=$(".alert"),alert.fadeIn(),alert.css("right","0"),setTimeout((function(){alert.fadeOut(2e3),alert.css("right","-50%")}),3e3)}));
