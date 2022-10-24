@@ -16,7 +16,7 @@
         Login:
         <form action="/auth/login" method="post">
             @csrf
-            <input type="text" placeholder="Login" name="login" required>
+            <input type="text" placeholder="Email" name="email" required>
             <input type="password" placeholder="Password" name="password" required>
             <button type="submit">Login</button>
             <? if(isset($error_login))  echo $error_login?>
@@ -24,7 +24,7 @@
         Register:
         <form action="/auth/register" method="post">
             @csrf
-            <input type="text" placeholder="Login" name="login" required>
+            <input type="text" placeholder="Name" name="name" required>
             <input type="text" placeholder="Email" name="email" required>
             <input type="password" placeholder="Password" name="password" required>
             <input type="password" placeholder="Confirm password" name="confirm_password" required>
