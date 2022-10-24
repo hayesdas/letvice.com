@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-5">
-                <div class="mb-3">All users - <span class="badge badge-pill badge-info mr-5">198</span> <a href="#">create</a></div>
+                <div class="mb-3">All users - <span class="badge badge-pill badge-info mr-5">{{ $users->count() }}</span> <a href="{{ route('admin.users.create') }}">create</a></div>
                 <form class="">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Search">
@@ -28,21 +28,13 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($users as $user)
                         <tr>
-                            <th scope="row">hayes</th>
-                            <td>23.10.2022</td>
+                            <th scope="row">{{ $user->name }}</th>
+                            <td>{{ $user->created_at->format('d.m.Y') }}</td>
                             <td><a href="#">View details</a></td>
                         </tr>
-                        <tr>
-                            <th scope="row">fury</th>
-                            <td>12.10.2022</td>
-                            <td><a href="#">View details</a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">heager</th>
-                            <td>02.09.2022</td>
-                            <td><a href="#">View details</a></td>
-                        </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
