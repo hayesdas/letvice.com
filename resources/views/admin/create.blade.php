@@ -5,6 +5,7 @@
         <div class="row justify-content-center vh-100">
             <div class="col-5 d-flex">
                 <form class="align-self-center mb-5">
+                    @csrf
                     <div class="text-center mb-3">
                         <h1 class="h3 text-center">Admin-panel</h1>
                         <h5 class="">Create admin-user</h5>
