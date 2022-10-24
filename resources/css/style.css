@@ -17,6 +17,9 @@ body{
 .flex{
     display: flex;
 }
+.flex-wrap{
+    flex-wrap: wrap;
+}
 .dropbtn {
     border: none;
     height: 22px;
@@ -104,7 +107,7 @@ body{
     font-size: 36px;
     line-height: 44px;
     padding-bottom: 30px;
-    
+
     color: #272727;
 }
 .shoes{
@@ -213,7 +216,7 @@ body{
     font-size: 32px;
     line-height: 39px;
     /* identical to box height */
-    
+
     text-transform: uppercase;
     margin-bottom: 17px;
     color: #1A1A1A;
@@ -229,7 +232,7 @@ body{
     line-height: 29px;
     margin-left: 12px;
     text-decoration-line: line-through;
-    
+
     color: #383838;
 }
 .add_to_basket_cont{

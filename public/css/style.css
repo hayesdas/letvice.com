@@ -1,1 +1,353 @@
-body{margin:0;padding:0;height:1000px;overflow-x:hidden}*{padding:0;margin:0;font-family:Inter;font-style:normal;box-sizing:border-box}.wrapper{margin:43px 247px 0 93px}.flex{display:flex}.dropbtn{border:none;height:22px;margin-right:64px;font-weight:400;font-size:16px;line-height:19px;cursor:pointer;color:#343434;text-decoration:none;background-image:linear-gradient(currentColor,currentColor);background-position:0 100%;background-repeat:no-repeat;background-size:0 2px;transition:background-size .3s}.dropbtn:hover{background-size:0}.dropdown{position:relative;display:inline-block}.dropdown-content{display:none;position:absolute;background-color:#f1f1f1;min-width:160px;box-shadow:0 8px 16px 0 rgba(0,0,0,.2);z-index:1}.dropdown-content a{color:#000;padding:12px 16px;text-decoration:none;display:block}.dropdown-content a:hover{background-color:#ddd}.dropdown:hover .dropdown-content{display:block}.logo{font-weight:500;font-size:16px;line-height:19px;cursor:pointer;color:#000;margin-right:87px;margin-bottom:13px}.header{margin-bottom:93px}.header_a{height:22px;margin-right:64px;font-weight:400;font-size:16px;line-height:19px;color:#343434;text-decoration:none;background-image:linear-gradient(currentColor,currentColor);background-position:0 100%;background-repeat:no-repeat;background-size:0 2px;transition:background-size .3s}.header_a:hover{background-size:100% 2px}.general_category{margin-bottom:65px;grid-template-columns:auto}.general_category_name{font-weight:500;font-size:36px;line-height:44px;padding-bottom:30px;color:#272727}.shoes{width:300px;height:554px;display:block}.shoes_img{width:300px;height:433px}.shoes_info{margin-top:15px;margin-bottom:15px}.shoes_category{font-style:italic;font-weight:400;font-size:16px;line-height:19px;margin-bottom:6px;color:#2c2c2c}.shoes_name{font-weight:500;font-size:17px;line-height:21px;text-transform:uppercase;color:#1a1a1a}.price{font-weight:500;font-size:17px;line-height:21px;text-transform:uppercase;margin-bottom:6px;color:#1a1a1a}.start_price{font-weight:400;font-size:15px;line-height:18px;color:#383838}.sale_price{color:#ff4040}.sale_price span{font-weight:300;font-size:15px;line-height:18px}.decor_text{text-decoration-line:line-through}.shoes{margin-right:100px}.shoes_header{margin-bottom:65px}.shoes_content{position:relative;height:677px}.shoes_main img{position:relative;width:469px;height:677px;margin-right:102px}.shoes_img_cont{position:relative;width:469px;height:677px;margin-right:102px}.shoes_main .shoes_info{margin-top:0}.shoes_main .shoes_info .shoes_category{font-weight:400;font-size:20px;line-height:24px;margin-bottom:6px;color:#2c2c2c}.shoes_main .shoes_info .shoes_name{font-weight:500;font-size:32px;line-height:39px;text-transform:uppercase;margin-bottom:17px;color:#1a1a1a}.shoes_main .shoes_price .price{font-weight:600;font-size:24px;line-height:29px}.shoes_main .decor_text{font-weight:400;font-size:24px;line-height:29px;margin-left:12px;text-decoration-line:line-through;color:#383838}.add_to_basket_cont{font-weight:400;font-size:16px;line-height:19px;margin-top:60px;color:#383838;display:block;margin-bottom:60px}.add_to_basket_cont select{width:390px;height:45px;border:1px solid #1a1a1a;font-weight:400;font-size:16px;line-height:19px;padding-left:4px;color:#1b1b1b;margin-bottom:8px}.add_to_basket_cont select:hover{border:2px solid #1a1a1a}.add_to_basket_cont select:focus{border:2px solid #1a1a1a}.add_to_basket_cont option{padding-left:8px;width:390px;height:45px;border:1px solid #1a1a1a}.sf832k{margin-bottom:6px}.shoes_button{cursor:pointer;width:390px;height:45px;background:#272727;border:none;font-weight:500;font-size:16px;line-height:19px;transition:.1s;color:#fff}.shoes_button:hover{background:#404040}.shoes_description_cont{font-weight:500;font-size:24px;line-height:29px;color:#000}.shoes_description{margin-top:16px;width:609px;height:157px;font-family:Inter;font-weight:400;font-size:20px;line-height:26px;color:#272727;margin-bottom:1px}.basket_product{margin-bottom:16px}.basket-img{width:107px;height:155px;margin-right:21px;margin-bottom:16px}.basket-shoes_info{margin-bottom:15px}.basket-shoes_category{font-style:italic;font-weight:400;font-size:16px;line-height:19px;margin-bottom:6px;color:#2c2c2c}.basket-shoes_name{font-weight:500;font-size:17px;line-height:21px;text-transform:uppercase;color:#1a1a1a}.basket-decor_text{font-weight:400;font-size:15px;line-height:18px;text-decoration-line:line-through;color:#383838}.basket-sale_price{font-weight:300;font-size:15px;line-height:18px;color:#ff4040}
+body{
+    margin: 0;
+    padding: 0;
+    height: 1000px;
+    overflow-x: hidden;
+}
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Inter';
+    font-style: normal;
+    box-sizing: border-box;
+}
+.wrapper{
+    margin: 43px 247px 0 93px;
+}
+.flex{
+    display: flex;
+}
+.flex-wrap{
+    flex-wrap: wrap;
+}
+.dropbtn {
+    border: none;
+    height: 22px;
+    margin-right: 64px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    cursor: pointer;
+    color: #343434;
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size .3s;
+}
+.dropbtn:hover{
+    background-size: 0%;
+}
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+.logo{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    cursor: pointer;
+    color: #000000;
+    margin-right: 87px;
+    margin-bottom: 13px;
+}
+.header{
+    margin-bottom: 93px;
+}
+.header_a{
+    height: 22px;
+    margin-right: 64px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #343434;
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size .3s;
+}
+.header_a:hover{
+    background-size: 100% 2px;
+}
+.general_category{
+    margin-bottom: 65px;
+    grid-template-columns: auto;
+}
+.general_category_name{
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 44px;
+    padding-bottom: 30px;
+
+    color: #272727;
+}
+.shoes{
+    width: 300px;
+    height: 554px;
+    display: block;
+}
+.shoes_img{
+    width: 300px;
+    height: 433px;
+}
+.shoes_info{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.shoes_category{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    margin-bottom: 6px;
+    color: #2C2C2C;
+}
+.shoes_name{
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 21px;
+    /* identical to box height */
+
+    text-transform: uppercase;
+
+    color: #1A1A1A;
+}
+.shoes_price{
+
+}
+.price{
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 21px;
+    /* identical to box height */
+
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    color: #1A1A1A;
+}
+.start_price{
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+
+    color: #383838;
+}
+.sale_price{
+    color: #FF4040;
+}
+.sale_price span{
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 18px;
+}
+.decor_text{
+    text-decoration-line: line-through;
+}
+
+
+/* SHOES */
+.shoes{
+    margin-right: 100px;
+}
+
+.shoes_header{
+    margin-bottom: 65px;
+}
+.shoes_main{
+
+}
+.shoes_content{
+    position: relative;
+    height: 677px;
+}
+.shoes_main img{
+    position: relative;
+    width: 469px;
+    height: 677px;
+    margin-right: 102px;
+}
+.shoes_img_cont{
+    position: relative;
+    width: 469px;
+    height: 677px;
+    margin-right: 102px;
+}
+.shoes_main .shoes_info{
+    margin-top: 0;
+}
+.shoes_main .shoes_info .shoes_category{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 6px;
+    color: #2C2C2C;
+}
+.shoes_main .shoes_info .shoes_name{
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 39px;
+    /* identical to box height */
+
+    text-transform: uppercase;
+    margin-bottom: 17px;
+    color: #1A1A1A;
+}
+.shoes_main .shoes_price .price{
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+}
+.shoes_main .decor_text{
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    margin-left: 12px;
+    text-decoration-line: line-through;
+
+    color: #383838;
+}
+.add_to_basket_cont{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    margin-top: 60px;
+    color: #383838;
+    display: block;
+    margin-bottom: 60px;
+}
+.add_to_basket_cont select{
+    width: 390px;
+    height: 45px;
+    border: 1px solid #1A1A1A;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    padding-left: 4px;
+    color: #1B1B1B;
+    margin-bottom: 8px;
+}
+.add_to_basket_cont select:hover{
+    border: 2px solid #1A1A1A;
+}
+.add_to_basket_cont select:focus{
+    border: 2px solid #1A1A1A;
+}
+.add_to_basket_cont option{
+    padding-left: 8px;
+    width: 390px;
+    height: 45px;
+    border: 1px solid #1A1A1A;
+}
+.sf832k{
+    margin-bottom: 6px;
+}
+.shoes_button{
+    cursor: pointer;
+    width: 390px;
+    height: 45px;
+    background: #272727;
+    border: none;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    transition: .1s;
+    color: #FFFFFF;
+}
+.shoes_button:hover{
+    background: #404040;
+}
+.shoes_description_cont{
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+}
+.shoes_description{
+    margin-top: 16px;
+    width: 609px;
+    height: 157px;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    color: #272727;
+    margin-bottom: 1px;
+}
+
+
+/* BASKET */
+
+.basket_product{
+    margin-bottom: 16px;
+}
+.basket-img{
+    width: 107px;
+    height: 155px;
+    margin-right: 21px;
+    margin-bottom: 16px;
+}
+.basket-shoes_info{
+    margin-bottom: 15px;
+}
+.basket-shoes_category{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    margin-bottom: 6px;
+    color: #2C2C2C;
+}
+.basket-shoes_name{
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 21px;
+    /* identical to box height */
+
+    text-transform: uppercase;
+
+    color: #1A1A1A;
+}
+.basket-decor_text{
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    text-decoration-line: line-through;
+
+    color: #383838;
+}
+.basket-sale_price{
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 18px;
+
+    color: #FF4040;
+}
