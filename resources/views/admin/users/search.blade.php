@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-5">
-                <div class="mb-3">All users - <span class="badge badge-pill badge-info mr-5">198</span> <a href="#">create</a></div>
+                <div class="mb-3">All users - <span class="badge badge-pill badge-info mr-5">198</span> <a href="{{ route('admin.users.create') }}">create</a></div>
                 <form class="">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Search">

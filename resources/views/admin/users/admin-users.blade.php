@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-5">
-                <div class="mb-3">All admins - <span class="badge badge-pill badge-info mr-5">3</span> <a href="#">Create admin-user</a></div>
+                <div class="mb-3">All admins - <span class="badge badge-pill badge-info mr-5">3</span> <a href="{{ route('admin.create') }}">Create admin-user</a></div>
             </div>
         </div>
         <div class="row">

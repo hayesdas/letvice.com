@@ -16,10 +16,10 @@
         <div class="col-2">
             <h4 class="mb-5">Admin-Panel</h4>
             <ul class="list-unstyled">
-                <li><a href="#">Index</a></li>
-                <li><a href="#">Users</a></li>
-                <li><a href="#">Categories</a></li>
-                <li><a href="#">Products</a></li>
+                <li><a href="{{ route('admin.index') }}">Index</a></li>
+                <li><a href="{{ route('admin.users.index') }}">Users</a></li>
+                <li><a href="{{ route('admin.categories.create') }}">Categories</a></li>
+                <li><a href="{{ route('admin.products.create') }}">Products</a></li>
             </ul>
         </div>
         <div class="col-10">
