@@ -53,8 +53,13 @@ Route::get('/admin', [AdminController::class, 'index']);
 Route::prefix('admin')->group(function(){
     Route::view('/list', 'admin.list')->name("admin.list");
     Route::view('/login', 'admin.login')->name("admin.login");
-    Route::view('/categories/create', 'admin.categories.create')->name("admin.categories.create");
-    Route::view('/products/create', 'admin.products.create')->name("admin.products.create");
+
+    Route::get('/categories/create', [AdminController::class, 'category_create'])->name("admin.categories.create");
+    Route::post('/categories/create', [AdminController::class, 'category_create_post']);
+
+    Route::get('/products/create', [AdminController::class, 'product_create'])->name("admin.products.create");
+    Route::post('/products/create', [AdminController::class, 'product_create_post']);
+
     Route::view('/users/create', 'admin.users.create')->name("admin.users.create");
     Route::view('/users', 'admin.users.index')->name("admin.users.index");
     Route::view('/create', 'admin.create')->name("admin.create");
