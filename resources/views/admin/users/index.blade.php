@@ -6,11 +6,11 @@
         <div class="row">
             <div class="col-5">
                 <div class="mb-3">All users - <span class="badge badge-pill badge-info mr-5">{{ $users->count() }}</span> <a href="{{ route('admin.users.create') }}">create</a></div>
-                <form class="">
+                <form class="" action="{{route('admin.users.search')}}">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control" placeholder="Search" name="name">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
                         </div>
                     </div>
                 </form>

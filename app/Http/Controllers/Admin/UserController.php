@@ -90,6 +90,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::findOrFail($id)->delete();
+        return redirect()->back();
+    }
+
+    public function search(Request $request)
+    {
+        $usersAmount = User::all()->count();
+        return view('admin.users.search', ['users' => User::where('name', $request->name)->get(), 'userAmount' => $usersAmount]);
     }
 }
