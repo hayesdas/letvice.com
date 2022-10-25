@@ -17,12 +17,12 @@
                     <li class="list-group-item">
                         <a class="" href="{{route('admin.products.create')}}">admin.products.create</a>
                     </li>
-                    <li class="list-group-item">
-                        <a class="" href="{{route('admin.users.create')}}">admin.users.create</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a class="" href="{{route('admin.users.index')}}">admin.users.index</a>
-                    </li>
+{{--                    <li class="list-group-item">--}}
+{{--                        <a class="" href="{{route('admin.users.create')}}">admin.users.create</a>--}}
+{{--                    </li>--}}
+{{--                    <li class="list-group-item">--}}
+{{--                        <a class="" href="{{route('admin.users.index')}}">admin.users.index</a>--}}
+{{--                    </li>--}}
                     <li class="list-group-item">
                         <a class="" href="{{route('admin.users.admin-users')}}">admin.admin-users.create</a>
                     </li>

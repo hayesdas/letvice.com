@@ -66,5 +66,9 @@ Route::prefix('admin')->group(function(){
     Route::get('/admin-index', [AdminController::class, 'index'])->name("admin.index");
     Route::view('/admin-users', 'admin.users.admin-users')->name("admin.users.admin-users");
     Route::view('/users-search', 'admin.users.search')->name("admin.users.search");
+
+    Route::name('admin.')->group(function(){
+        Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
+    });
 });
 
