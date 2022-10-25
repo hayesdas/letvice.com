@@ -26,9 +26,9 @@
                     <li class="list-group-item">
                         <a class="" href="{{route('admin.users.admin-users')}}">admin.admin-users.create</a>
                     </li>
-                    <li class="list-group-item">
-                        <a class="" href="{{route('admin.users.search')}}">admin.search</a>
-                    </li>
+{{--                    <li class="list-group-item">--}}
+{{--                        <a class="" href="{{route('admin.users.search')}}">admin.search</a>--}}
+{{--                    </li>--}}
                     <li class="list-group-item">
                         <a class="" href="{{route('admin.index')}}">admin.index</a>
                     </li>

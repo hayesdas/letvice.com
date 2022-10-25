@@ -65,10 +65,10 @@ Route::prefix('admin')->group(function(){
     Route::view('/create', 'admin.create')->name("admin.create");
     Route::view('/admin-index', 'admin.index')->name("admin.index");
     Route::view('/admin-users', 'admin.users.admin-users')->name("admin.users.admin-users");
-    Route::view('/users-search', 'admin.users.search')->name("admin.users.search");
 
     Route::name('admin.')->group(function(){
         Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
+        Route::get('user/search', [\App\Http\Controllers\Admin\UserController::class, 'search'])->name('users.search');
     });
 });
 
