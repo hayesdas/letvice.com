@@ -63,7 +63,7 @@ Route::prefix('admin')->group(function(){
     Route::view('/users/create', 'admin.users.create')->name("admin.users.create");
     Route::view('/users', 'admin.users.index')->name("admin.users.index");
     Route::view('/create', 'admin.create')->name("admin.create");
-    Route::view('/admin-index', 'admin.index')->name("admin.index");
+    Route::get('/admin-index', [AdminController::class, 'index'])->name("admin.index");
     Route::view('/admin-users', 'admin.users.admin-users')->name("admin.users.admin-users");
     Route::view('/users-search', 'admin.users.search')->name("admin.users.search");
 });

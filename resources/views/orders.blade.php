@@ -45,7 +45,7 @@
             Id: <?=$order->id?> <br>
             Key: <?=$order->key?> <br>
             Email: <?=$order->email?> <br>
-            Total Price: <?=$order->total_price?>$ <br>
+            Total Price: <?=$order->total_price?>$ <br> <br>
 
         <? endforeach ?>
 
