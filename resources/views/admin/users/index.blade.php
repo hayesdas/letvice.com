@@ -5,10 +5,15 @@
     <div class="container">
         <div class="row">
             <div class="col-5">
+                @if(session('message'))
+                <div class="alert alert-warning" role="alert">
+                    {{ session('message') }}
+                </div>
+                @endif
                 <div class="mb-3">All users - <span class="badge badge-pill badge-info mr-5">{{ $users->count() }}</span> <a href="{{ route('admin.users.create') }}">create</a></div>
                 <form class="" action="{{route('admin.users.search')}}">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Search" name="name">
+                        <input type="text" class="form-control" placeholder="Search" name="name"> <span></span>
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
                         </div>
@@ -32,7 +37,7 @@
                         <tr>
                             <th scope="row">{{ $user->name }}</th>
                             <td>{{ $user->created_at->format('d.m.Y') }}</td>
-                            <td><a href="#">View details</a></td>
+                            <td><a href="{{route('admin.users.search', ['name' => $user->name])}}">View details</a></td>
                         </tr>
                         @endforeach
                         </tbody>

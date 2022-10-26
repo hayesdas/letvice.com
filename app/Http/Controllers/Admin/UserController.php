@@ -97,6 +97,10 @@ class UserController extends Controller
     public function search(Request $request)
     {
         $usersAmount = User::all()->count();
-        return view('admin.users.search', ['users' => User::where('name', $request->name)->get(), 'userAmount' => $usersAmount]);
+        $users = User::where('name', $request->name)->get();
+        if ($users->count() == 0) {
+            return redirect()->route('admin.users.index')->with(['message' => "Нет такого пользователя { $request->name }"]);
+        }
+        return view('admin.users.search', ['users' => $users, 'userAmount' => $usersAmount]);
     }
 }
