@@ -25,7 +25,7 @@
                     </div>
                     <div class="card-body">
                         <p class="card-text">id: {{$user->id}}</p>
-                        <p class="card-text">Amoutn of orders: 296$</p>
+                        <p class="card-text">Amoutn of orders: {{ $user->amoutn_of_orders }}$</p>
                         <p class="card-text">Role: {{$user->role}}</p>
                         <form action="{{route('admin.users.destroy', ['user' => $user->id])}}" method="post" onsubmit="return confirm('Вы уверены?')">
                             @csrf

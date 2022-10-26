@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\User;
+use App\Services\User\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -37,16 +38,9 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, UserService $userService)
     {
-        $result = $request->validate([
-            'login' => 'required',
-            'password' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'role' => 'required',
-        ]);
-        $result['password'] = bcrypt($result['password']);
-        User::create($result);
+        $userService->create($request);
         return redirect()->route('admin.users.index');
     }
 
@@ -103,6 +97,19 @@ class UserController extends Controller
         if ($users->count() == 0) {
             return redirect()->route('admin.users.index')->with(['message' => "Нет такого пользователя { $request->login }"]);
         }
+        foreach ($users as $user) {
+            if(Order::all()->count() >= 1){
+                foreach (Order::all() as $order) {
+                    if($order['email'] == $user['email']){
+                        $user['amoutn_of_orders'] = $user['amoutn_of_orders'] + $order->total_price;
+                    } else {
+                        $user['amoutn_of_orders'] = 0;
+                    }
+                }
+            }
+            $user['amoutn_of_orders'] = 0;
+        }
+
         return view('admin.users.search', ['users' => $users, 'userAmount' => $usersAmount]);
     }
 }
