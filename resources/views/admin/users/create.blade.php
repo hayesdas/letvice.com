@@ -11,7 +11,7 @@
                         <h5 class="">Create user</h5>
                     </div>
                     <div class="form-group">
-                        <input required type="text" class="form-control" id="exampleInput" name="name" placeholder="Login">
+                        <input required type="text" class="form-control" id="exampleInput" name="login" placeholder="Login">
                     </div>
                     <div class="form-group">
                         <input required type="password" class="form-control" id="exampleInput" name="password" placeholder="Password">
@@ -24,7 +24,6 @@
                             <option disabled selected value="">Role</option>
                             <option value="User">User</option>
                             <option value="Seller">Seller</option>
-                            <option value="Admin">Admin</option>
                         </select>
                     </div>
                     <div class="d-flex justify-content-center">

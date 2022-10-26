@@ -8,9 +8,9 @@
                 <div class="mb-3">All users - <span class="badge badge-pill badge-info mr-5">{{ $userAmount }}</span> <a href="{{ route('admin.users.create') }}">create</a></div>
                 <form class="" action="{{route('admin.users.search')}}">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Search" name="name">
+                        <input type="text" class="form-control" placeholder="Search" name="login">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
                         </div>
                     </div>
                 </form>
@@ -21,13 +21,12 @@
             <div class="col-6 mb-3">
                 <div class="card">
                     <div class="card-header">
-                       {{$user->name}}
+                       {{$user->login}}
                     </div>
                     <div class="card-body">
                         <p class="card-text">id: {{$user->id}}</p>
                         <p class="card-text">Amoutn of orders: 296$</p>
                         <p class="card-text">Role: {{$user->role}}</p>
-                        <p class="card-text">New product created - 19</p>
                         <form action="{{route('admin.users.destroy', ['user' => $user->id])}}" method="post" onsubmit="return confirm('Вы уверены?')">
                             @csrf
                             @method('DELETE')

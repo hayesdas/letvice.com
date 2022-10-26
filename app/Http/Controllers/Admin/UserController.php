@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -38,7 +40,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $result = $request->validate([
-            'name' => 'required',
+            'login' => 'required',
             'password' => 'required',
             'email' => 'required|email|unique:users,email',
             'role' => 'required',
@@ -97,9 +99,9 @@ class UserController extends Controller
     public function search(Request $request)
     {
         $usersAmount = User::all()->count();
-        $users = User::where('name', $request->name)->get();
+        $users = User::where('login', 'LIKE', "%{$request->login}%")->get();
         if ($users->count() == 0) {
-            return redirect()->route('admin.users.index')->with(['message' => "Нет такого пользователя { $request->name }"]);
+            return redirect()->route('admin.users.index')->with(['message' => "Нет такого пользователя { $request->login }"]);
         }
         return view('admin.users.search', ['users' => $users, 'userAmount' => $usersAmount]);
     }

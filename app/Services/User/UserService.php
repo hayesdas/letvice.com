@@ -21,7 +21,7 @@ class UserService{
             'login' => $request->login,
             'email' => $request->email,
             'password' => $request->password,
-            'role' => 'user',
+            'role' => 'User',
         ]);
         Auth::login($user);
     }

@@ -13,7 +13,7 @@
                 <div class="mb-3">All users - <span class="badge badge-pill badge-info mr-5">{{ $users->count() }}</span> <a href="{{ route('admin.users.create') }}">create</a></div>
                 <form class="" action="{{route('admin.users.search')}}">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Search" name="name"> <span></span>
+                        <input type="text" class="form-control" placeholder="Search" name="login"> <span></span>
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
                         </div>
@@ -35,9 +35,9 @@
                         <tbody>
                         @foreach($users as $user)
                         <tr>
-                            <th scope="row">{{ $user->name }}</th>
+                            <th scope="row">{{ $user->login }}</th>
                             <td>{{ $user->created_at->format('d.m.Y') }}</td>
-                            <td><a href="{{route('admin.users.search', ['name' => $user->name])}}">View details</a></td>
+                            <td><a href="{{route('admin.users.search', ['login' => $user->login])}}">View details</a></td>
                         </tr>
                         @endforeach
                         </tbody>
