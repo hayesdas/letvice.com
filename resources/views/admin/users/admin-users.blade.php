@@ -20,21 +20,17 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($admin_users as $admin)
                         <tr>
-                            <th scope="row">hayes</th>
-                            <td>23.10.2022</td>
-                            <td><a href="#">View details</a></td>
+                            <th scope="row">{{ $admin->login }}</th>
+                            <td>{{ $admin->created_at->format('d.m.Y') }}</td>
+                            <td>
+                                <a href="/admin/admin-user/delete?s=<?=md5(time())?>&d={{ $admin->id }}&c={{ $admin->id }}42&k={{ $admin->id + 1 }}&q=<?=md5(time() + 10)?>">Delete</a>
+                                
+                            </td>
                         </tr>
-                        <tr>
-                            <th scope="row">fury</th>
-                            <td>12.10.2022</td>
-                            <td><a href="#">View details</a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">heager</th>
-                            <td>02.09.2022</td>
-                            <td><a href="#">View details</a></td>
-                        </tr>
+                        @endforeach
+
                         </tbody>
                     </table>
                 </div>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\ProductRequest;
+use App\Models\Admin;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
@@ -71,5 +73,21 @@ class AdminController extends Controller
             return redirect(route('admin.list'));
         }
         return view('admin.categories.create', ['error' => $return]);
+    }
+
+    public function create(LoginRequest $request){
+        Admin::create($request->validated());
+        return redirect('/admin/list');
+    }
+
+    public function admin_users(){
+        $admin_users = Admin::all();
+        return view('admin.users.admin-users', ['admin_users' => $admin_users]);
+    }
+    
+    public function admin_users_delete(Request $request){
+        $id = $request->d;
+        Admin::find($id)->delete();
+        return redirect('/admin/admin-users');
     }
 }

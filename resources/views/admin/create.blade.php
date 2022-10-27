@@ -4,17 +4,17 @@
     <div class="container">
         <div class="row justify-content-center vh-100">
             <div class="col-5 d-flex">
-                <form class="align-self-center mb-5">
+                <form class="align-self-center mb-5" method="post">
                     @csrf
                     <div class="text-center mb-3">
                         <h1 class="h3 text-center">Admin-panel</h1>
                         <h5 class="">Create admin-user</h5>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="exampleInput" placeholder="Login">
+                        <input type="text" class="form-control" id="exampleInput" placeholder="Login" name="login">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="exampleInput" placeholder="Password">
+                        <input type="password" class="form-control" id="exampleInput" placeholder="Password" name="password">
                     </div>
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-link">Create</button>

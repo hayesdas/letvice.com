@@ -10,6 +10,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\SearchController;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -63,8 +64,10 @@ Route::prefix('admin')->group(function(){
     Route::view('/users/create', 'admin.users.create')->name("admin.users.create");
     Route::view('/users', 'admin.users.index')->name("admin.users.index");
     Route::view('/create', 'admin.create')->name("admin.create");
+    Route::post('/create', [AdminController::class, 'create']);
     Route::get('/admin-index', [AdminController::class, 'index'])->name("admin.index");
-    Route::view('/admin-users', 'admin.users.admin-users')->name("admin.users.admin-users");
+    Route::get('/admin-users', [AdminController::class, 'admin_users'])->name("admin.users.admin-users");
+    Route::get('/admin-user/delete', [AdminController::class, 'admin_users_delete']);
 
     Route::name('admin.')->group(function(){
         Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
