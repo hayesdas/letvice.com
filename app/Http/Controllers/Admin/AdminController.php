@@ -14,6 +14,7 @@ use App\Services\Category\CategoryService;
 use App\Services\Product\ProductService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -84,10 +85,22 @@ class AdminController extends Controller
         $admin_users = Admin::all();
         return view('admin.users.admin-users', ['admin_users' => $admin_users]);
     }
-    
+
     public function admin_users_delete(Request $request){
         $id = $request->d;
         Admin::find($id)->delete();
         return redirect('/admin/admin-users');
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'login' => 'required',
+            'password' => 'required',
+        ]);
+        if (Auth::guard('admin')->attempt($credentials)){
+            return redirect()->route('admin.users.index');
+        };
+        return redirect()->route('admin.login');
     }
 }
