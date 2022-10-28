@@ -112,4 +112,10 @@ class UserController extends Controller
 
         return view('admin.users.search', ['users' => $users, 'userAmount' => $usersAmount]);
     }
+
+    public function logout()
+    {
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.login');
+    }
 }

@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/auth', [AuthController::class, 'index'])->name('auth');
+Route::get('/auth', [AuthController::class, 'index'])->name('auth')->middleware('guest');
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
 
@@ -54,6 +54,7 @@ Route::get('/admin', [AdminController::class, 'index']);
 Route::prefix('admin')->group(function(){
     Route::view('/list', 'admin.list')->name("admin.list");
     Route::view('/login', 'admin.login')->name("admin.login");
+    Route::post('/login', [AdminController::class, 'login']);
 
     Route::get('/categories/create', [AdminController::class, 'category_create'])->name("admin.categories.create");
     Route::post('/categories/create', [AdminController::class, 'category_create_post']);
@@ -70,8 +71,9 @@ Route::prefix('admin')->group(function(){
     Route::get('/admin-user/delete', [AdminController::class, 'admin_users_delete']);
 
     Route::name('admin.')->group(function(){
-        Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
+        Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->middleware('auth:admin');
         Route::get('user/search', [\App\Http\Controllers\Admin\UserController::class, 'search'])->name('users.search');
+        Route::post('logout', [\App\Http\Controllers\Admin\UserController::class, 'logout'])->name('logout');
     });
 });
 
