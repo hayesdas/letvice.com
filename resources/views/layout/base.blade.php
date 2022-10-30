@@ -36,9 +36,11 @@
                 @if(Auth::check())
                     <a href="/logout" class="header_a">Logout</a>
                     <a href="/orders" class="header_a">Orders</a>
+                    @if(Auth::check())
+                    <a href="/products/create" class="header_a">Create Product</a>
+                    @endif
                     @else
                     <a href="/auth" class="header_a">Auth</a>
-                    <a href="/orders" class="header_a">Orders</a>
                 @endif
             </div>
         </header>
