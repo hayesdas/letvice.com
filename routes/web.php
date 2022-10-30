@@ -62,12 +62,6 @@ Route::post('/admin/login', [AdminController::class, 'login_post']);
 
 Route::prefix('admin')->middleware('auth:admin')->group(function(){ // Доступ только админам
     Route::view('/list', 'admin.list')->name("admin.list");
-<<<<<<< HEAD
-=======
-    Route::view('/login', 'admin.login')->name("admin.login");
-    Route::post('/login', [AdminController::class, 'login']);
-
->>>>>>> 60f6a65aa8f4e2fdea177ab442cea63687ee54f2
     Route::get('/categories/create', [AdminController::class, 'category_create'])->name("admin.categories.create");
     Route::post('/categories/create', [AdminController::class, 'category_create_post']);
 
