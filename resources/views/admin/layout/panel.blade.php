@@ -22,6 +22,12 @@
                     </form>
                 </li>
             <ul class="list-unstyled">
+                <li>
+                    <form action="{{route('admin.logout')}}" method="post">
+                        @csrf
+                       <button type="submit" class="btn btn-link px-0">Logout</button>
+                    </form>
+                </li>
                 <li><a href="{{ route('admin.index') }}">Index</a></li>
                 <li><a href="{{ route('admin.users.index') }}">Users</a></li>
                 <li><a href="{{ route('admin.categories.create') }}">Categories</a></li>

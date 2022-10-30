@@ -15,8 +15,11 @@ use App\Services\Product\ProductService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+=======
+>>>>>>> 60f6a65aa8f4e2fdea177ab442cea63687ee54f2
 
 class AdminController extends Controller
 {
@@ -88,18 +91,22 @@ class AdminController extends Controller
         $admin_users = Admin::all();
         return view('admin.users.admin-users', ['admin_users' => $admin_users]);
     }
-    
+
     public function admin_users_delete(Request $request){
         $id = $request->d;
         Admin::find($id)->delete();
         return redirect('/admin/admin-users');
     }
 
+<<<<<<< HEAD
     public function login(){
         return view('admin.login');
     }
 
     public function login_post(Request $request)
+=======
+    public function login(Request $request)
+>>>>>>> 60f6a65aa8f4e2fdea177ab442cea63687ee54f2
     {
         $credentials = $request->validate([
             'login' => 'required',
