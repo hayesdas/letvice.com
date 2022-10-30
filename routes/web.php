@@ -9,9 +9,12 @@ use App\Http\Controllers\CreateController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SearchController;
 use App\Models\Admin;
+use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate as FacadesGate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/auth', [AuthController::class, 'index'])->name('auth');
+Route::get('/auth', [AuthController::class, 'index'])->name('auth')->middleware('guest');
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
 
@@ -49,12 +52,16 @@ Route::middleware('auth')->get('/orders', [OrdersController::class, 'index']);
 
 Route::get('/category/{category}', [CategoryController::class, 'index']);
 
-Route::get('/admin', [AdminController::class, 'index']);
+Route::prefix('products')->middleware('auth')->group(function(){
+    Route::get('/create', [ProductsController::class, 'index'])->name('products.create');
+    Route::post('/create', [ProductsController::class, 'create'])->name('products.create');
+});
 
-Route::prefix('admin')->group(function(){
+Route::get('/admin/login', [AdminController::class, 'login'])->name("admin.login");
+Route::post('/admin/login', [AdminController::class, 'login_post']);
+
+Route::prefix('admin')->middleware('auth:admin')->group(function(){ // Доступ только админам
     Route::view('/list', 'admin.list')->name("admin.list");
-    Route::view('/login', 'admin.login')->name("admin.login");
-
     Route::get('/categories/create', [AdminController::class, 'category_create'])->name("admin.categories.create");
     Route::post('/categories/create', [AdminController::class, 'category_create_post']);
 
@@ -68,10 +75,10 @@ Route::prefix('admin')->group(function(){
     Route::get('/admin-index', [AdminController::class, 'index'])->name("admin.index");
     Route::get('/admin-users', [AdminController::class, 'admin_users'])->name("admin.users.admin-users");
     Route::get('/admin-user/delete', [AdminController::class, 'admin_users_delete']);
-
     Route::name('admin.')->group(function(){
-        Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
+        Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->middleware('auth:admin');
         Route::get('user/search', [\App\Http\Controllers\Admin\UserController::class, 'search'])->name('users.search');
+        Route::post('logout', [\App\Http\Controllers\Admin\UserController::class, 'logout'])->name('logout');
     });
 });
 

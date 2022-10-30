@@ -20,8 +20,7 @@ class IndexController extends Controller
         if(!empty($request->s)){ // Если пользователь ищет что-нибудь
             return $searchService->search($request);
         }
-
-        session_start();
+        
         if(isset($_SESSION['view_category'])){
             $recommended = Product::where('category', $_SESSION['view_category'])->get();
             return view('index',[

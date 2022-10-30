@@ -19,9 +19,11 @@ class CreateProductsTable extends Migration
             $table->string('description');
             $table->string('category');
             $table->string('firm');
+            $table->integer('author')->nullable();
             $table->string('price')->nullable();
             $table->integer('sale')->nullable();
             $table->string('img');
+            $table->string('status')->default('false');
             $table->timestamps();
         });
     }

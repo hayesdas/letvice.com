@@ -15,6 +15,12 @@
     <div class="row">
         <div class="col-2">
             <h4 class="mb-5">Admin-Panel</h4>
+            <li>
+                    <form action="{{route('admin.logout')}}" method="post">
+                        @csrf
+                       <button type="submit" class="btn btn-link px-0">Logout</button>
+                    </form>
+                </li>
             <ul class="list-unstyled">
                 <li><a href="{{ route('admin.index') }}">Index</a></li>
                 <li><a href="{{ route('admin.users.index') }}">Users</a></li>

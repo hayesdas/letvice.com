@@ -10,7 +10,11 @@
             </div>
             <div class="col-6 mb-3">
                 <div class="">All time earnings - <span class="badge badge-pill badge-info mr-5">{{ $all_time_earnings }}$</span></div>
-                <div class="">Earnings for today - <span class="text-success">{{ $today_time_earnings }}$(+<? echo floor(100 - ($today_time_earnings/$all_time_earnings) * 100) ?>%)</span></div>
+                <div class="">Earnings for today - <span class="text-success">
+                    @if(!empty($today_time_earnings))
+                        {{ $today_time_earnings }}$(+<? echo floor(100 - ($today_time_earnings/$all_time_earnings) * 100) ?>%)
+                    @endif
+                </span></div>
             </div>
             <div class="col-6 mb-3">
                 <div class="">All categories - <span class="badge badge-pill badge-info mr-5">{{ $all_categories }}</span></div>

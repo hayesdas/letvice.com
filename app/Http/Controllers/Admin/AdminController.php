@@ -14,11 +14,15 @@ use App\Services\Category\CategoryService;
 use App\Services\Product\ProductService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
 
     public function index(){
+
 
         $all_time_earnings = 0;
         foreach (Order::all() as $order) {
@@ -56,7 +60,7 @@ class AdminController extends Controller
     }
 
     public function product_create_post(ProductRequest $request, ProductService $productService){
-        $return = $productService->create($request);
+        $return = $productService->admin_create($request);
         if($return === true){ // Если все хорошо
             return redirect(route('admin.list'));
         }
@@ -89,5 +93,21 @@ class AdminController extends Controller
         $id = $request->d;
         Admin::find($id)->delete();
         return redirect('/admin/admin-users');
+    }
+
+    public function login(){
+        return view('admin.login');
+    }
+
+    public function login_post(Request $request)
+    {
+        $credentials = $request->validate([
+            'login' => 'required',
+            'password' => 'required',
+        ]);
+        if (Auth::guard('admin')->attempt($credentials)){
+            return redirect()->route('admin.users.index');
+        };
+        return redirect()->route('admin.login');
     }
 }

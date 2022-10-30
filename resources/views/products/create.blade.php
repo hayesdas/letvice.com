@@ -7,7 +7,7 @@
                 <form class="align-self-center mb-5" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="text-center mb-3">
-                        <h1 class="h3 text-center">Admin-panel</h1>
+                        <h1 class="h3 text-center">Seller-panel</h1>
                         <h5 class="">Create product</h5>
                     </div>
                     <div class="form-group">
@@ -17,7 +17,7 @@
                         <textarea required class="form-control" id="exampleFormControlTextarea1" rows="3" name="description">Description</textarea>
                     </div>
                     <div class="form-group">
-                        <input required type="text" class="form-control" id="exampleInput" placeholder="Firm" name="firm">
+                        <input required type="text" class="form-control" id="exampleInput" placeholder="Firm" name="firm" value="{{ auth()->user()->firm }}">
                     </div>
                     <div class="input-group mb-3">
                         <select required class="custom-select" id="inputGroupSelect01" name="category">
