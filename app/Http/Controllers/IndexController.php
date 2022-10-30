@@ -13,7 +13,7 @@ class IndexController extends Controller
 {
     public function index(Request $request, SearchService $searchService, FilterInterface $filters){
         
-        $query = Product::query();
+        $query = Product::query()->where('status', 'success');
 
         $query = $filters->filter($request, $query);
 
