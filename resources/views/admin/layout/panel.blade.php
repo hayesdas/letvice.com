@@ -15,12 +15,6 @@
     <div class="row">
         <div class="col-2">
             <h4 class="mb-5">Admin-Panel</h4>
-            <li>
-                    <form action="{{route('admin.logout')}}" method="post">
-                        @csrf
-                       <button type="submit" class="btn btn-link px-0">Logout</button>
-                    </form>
-                </li>
             <ul class="list-unstyled">
                 <li>
                     <form action="{{route('admin.logout')}}" method="post">
@@ -32,6 +26,7 @@
                 <li><a href="{{ route('admin.users.index') }}">Users</a></li>
                 <li><a href="{{ route('admin.categories.create') }}">Categories</a></li>
                 <li><a href="{{ route('admin.products.create') }}">Products</a></li>
+                <li><a href="{{ route('admin.products_query') }}">Products query</a></li>
             </ul>
         </div>
         <div class="col-10">

@@ -67,6 +67,20 @@ class AdminController extends Controller
         return view('admin.products.create', ['error' => $return]);
     }
 
+    public function product_accept(Request $request, $id){
+        $product = Product::find($id)->get()[0];
+        $product->status = 'success';
+        $product->save();
+        return redirect()->back();
+    }
+
+    public function product_reject(Request $request, $id){
+        $product = Product::find($id)->get()[0];
+        $product->status = 'reject';
+        $product->save();
+        return redirect()->back();
+    }
+
     public function category_create(){
         return view('admin.categories.create');
     }
@@ -109,5 +123,17 @@ class AdminController extends Controller
             return redirect()->route('admin.users.index');
         };
         return redirect()->route('admin.login');
+    }
+
+    public function products_query(){
+
+        $productsAmount = Product::all()->count();
+        $products = Product::where('status', 'false')->get();
+
+        return view('admin.products.products_query', [
+            'products' => $products,
+            'productsAmount' => $productsAmount,
+        ]);
+
     }
 }
