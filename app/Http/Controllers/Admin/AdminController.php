@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CommentCreateRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\ProductRequest;
 use App\Models\Admin;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -68,16 +70,25 @@ class AdminController extends Controller
     }
 
     public function product_accept(Request $request, $id){
-        $product = Product::find($id)->get()[0];
+        $product = Product::where('id', $id)->get()[0];
         $product->status = 'success';
         $product->save();
         return redirect()->back();
     }
 
     public function product_reject(Request $request, $id){
-        $product = Product::find($id)->get()[0];
+        $product = Product::where('id', $id)->get()[0];
         $product->status = 'reject';
         $product->save();
+        return redirect()->back();
+    }
+
+    public function product_add_comment(CommentCreateRequest $request, $id){
+        Comment::create([
+            'text' => $request->text,
+            'author' => Auth::user()['id'],
+            'product' => $id,
+        ]);
         return redirect()->back();
     }
 

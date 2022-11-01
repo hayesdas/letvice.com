@@ -55,6 +55,7 @@ Route::get('/category/{category}', [CategoryController::class, 'index']);
 Route::prefix('products')->middleware('auth')->group(function(){
     Route::get('/create', [ProductsController::class, 'index'])->name('products.create');
     Route::post('/create', [ProductsController::class, 'create'])->name('products.create');
+    Route::post('/products/{id}/add_comment', [AdminController::class, 'product_add_comment'])->middleware('auth')->name('admin.products.add_comment');
 });
 
 Route::get('/admin/login', [AdminController::class, 'login'])->name("admin.login");

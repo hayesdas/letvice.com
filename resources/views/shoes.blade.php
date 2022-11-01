@@ -23,7 +23,7 @@
                 </div>
                 <div class="add_to_basket_cont">
                     <div class="sf832k">Size</div>
-                    <select name="shoes_size" id="">
+                    <select name="shoes_size" id="shoes_size">
                         <option value="39">39</option>
                         <option value="40">40</option>
                         <option value="41">41</option>
@@ -44,8 +44,39 @@
                     </div>
                 </div>
                 <button type="submit" class="shoes_button">Read comments</button>
+                <div class="add_comment" style="margin-top: 10px;">
+                    <div class="shoes_description" style="height: auto;">Add comment</div> 
+                    <form action="{{ route('admin.products.add_comment', ['id' => $product->id]) }}" method="post" style="margin-top: 0px;">
+                        @csrf
+                        <textarea placeholder="Comment" style="width: 300px;height: 100px;" name="text"></textarea> <br>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+                
             </div>
         </main>
+        <div class="shoes_description_cont">
+            <div class="">
+                <br>
+                Comments
+            </div>
+            
+            <div class="shoes_comments">
+                @foreach($comments as $comment)
+                <div class="shoes_comment shoes_description" style="height: auto;">
+                    <div class="shoes_comment_text">
+                        {{ $comment->text }} <br>
+                    </div>
+                    <div class="shoes_comment_author">
+                        Author: 
+                        {{ App\Models\User::find($comment->author)->login }}    
+                    </div>
+
+                </div>
+                @endforeach   
+            </div>
+
+        </div>
     </div>
     <div class="alert">
         <div class="content">
@@ -73,7 +104,7 @@
                         'name': '<?=$product->name?>',
                         'img': '<?=$product->img?>',
                         'price': <?=$product->price?>,
-                        'size': $('select').val(),
+                        'size': $('#shoes_size').val(),
                         <? if(!empty($product->sale)): ?>
                         'sale': <?=$product->sale?>,
                         <? endif ?>
@@ -83,6 +114,10 @@
                 })
             })  
              
+            $('.shoes_button').click(function(){
+
+            })
+            
         })
         
     </script>

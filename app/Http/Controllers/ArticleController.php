@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Product;
 use App\Services\Search\SearchService;
 use Illuminate\Http\Request;
@@ -20,10 +21,10 @@ class ArticleController extends Controller
         };
         session_start();
         $_SESSION['view_category'] = $product['category'];
-        
         return view('shoes', [
             'product' => $product,
             'categories' => Category::all(),
+            'comments' => Comment::where('product', $product->id)->get(),
         ]);
     }
 }
