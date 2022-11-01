@@ -92,6 +92,12 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function categories(){
+        return view('admin.categories.categories', [
+            'categories' => Category::all(),
+        ]);
+    }
+
     public function category_create(){
         return view('admin.categories.create');
     }
@@ -102,6 +108,14 @@ class AdminController extends Controller
             return redirect(route('admin.list'));
         }
         return view('admin.categories.create', ['error' => $return]);
+    }
+
+    public function category_delete(Request $request, $id){
+        $category = Category::where('id', $id)->get()[0];
+        // При удалении категории, все товары, которые связаны с ней будут удалены
+        Product::where('category', $category->name)->delete();
+        $category->delete();
+        return redirect()->back();
     }
 
     public function create(LoginRequest $request){

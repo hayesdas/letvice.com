@@ -71,7 +71,6 @@
                         Author: 
                         {{ App\Models\User::find($comment->author)->login }}    
                     </div>
-
                 </div>
                 @endforeach   
             </div>

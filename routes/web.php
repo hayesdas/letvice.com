@@ -63,8 +63,10 @@ Route::post('/admin/login', [AdminController::class, 'login_post']);
 
 Route::prefix('admin')->middleware('auth:admin')->group(function(){ // Доступ только админам
     Route::view('/list', 'admin.list')->name("admin.list");
+    Route::get('/categories', [AdminController::class, 'categories'])->name('admin.categories');
     Route::get('/categories/create', [AdminController::class, 'category_create'])->name("admin.categories.create");
     Route::post('/categories/create', [AdminController::class, 'category_create_post']);
+    Route::get('/categories/{id}/delete', [AdminController::class, 'category_delete'])->name('admin.categories.delete');
 
     Route::get('/products/create', [AdminController::class, 'product_create'])->name("admin.products.create");
     Route::post('/products/create', [AdminController::class, 'product_create_post']);

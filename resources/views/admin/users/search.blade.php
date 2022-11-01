@@ -30,6 +30,7 @@
                         @if($user->role === 'Seller')
                             <p class="card-text">Products created: {{  App\Models\Product::where('author', $user->id)->count() }}</p>
                         @endif
+                        <p class="card-text">Email: {{$user->email}}</p>
                         <form action="{{route('admin.users.destroy', ['user' => $user->id])}}" method="post" onsubmit="return confirm('Вы уверены?')">
                             @csrf
                             @method('DELETE')
