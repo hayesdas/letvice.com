@@ -21,6 +21,7 @@ class Order extends Model
         'address',
         'products',
         'total_price',
+        'status',
     ];
 
     /**

@@ -36,7 +36,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, UserService $userService)
@@ -48,7 +48,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -59,7 +59,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -70,8 +70,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -82,7 +82,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -97,12 +97,14 @@ class UserController extends Controller
         $usersAmount = User::all()->count();
         $users = User::where('login', 'LIKE', "%{$request->login}%")->get();
         if ($users->count() == 0) {
-            return redirect()->route('admin.users.index')->with(['message' => "Нет такого пользователя { $request->login }"]);
+            return redirect()->route('admin.users.index')->with(
+                ['message' => "Нет такого пользователя { $request->login }"]
+            );
         }
         foreach ($users as $user) {
-            if(Order::all()->count() >= 1){
+            if (Order::all()->count() >= 1) {
                 foreach (Order::all() as $order) {
-                    if($order['email'] == $user['email']){
+                    if ($order['email'] == $user['email']) {
                         $user['amoutn_of_orders'] = $user['amoutn_of_orders'] + $order->total_price;
                     } else {
                         $user['amoutn_of_orders'] = 0;
@@ -114,10 +116,40 @@ class UserController extends Controller
 
         return view('admin.users.search', ['users' => $users, 'userAmount' => $usersAmount]);
     }
-    
+
     public function logout()
     {
         Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
+    }
+
+    public function orders()
+    {
+        $orders = Order::all();
+        $orders = $orders->map(function ($item) {
+            $products = [];;
+            foreach ((array)((array)json_decode($item->products))['products'] as $product) {
+                $products[] = Product::findOrFail($product->id)->toArray() + (array)$product;
+            }
+            return [
+                "id" => $item->id,
+                "email" => $item->email,
+                "address" => $item->address,
+                "products" => $products,
+                "status" => $item->status,
+                "total_price" => $item->total_price,
+                "created_at" => $item->created_at,
+            ];
+        });
+        return view('admin.orders', compact('orders'));
+    }
+
+    public function ordersStatus(Request $request){
+        $request->validate([
+            'id' => 'required',
+            'status' => 'required'
+        ]);
+        $order = Order::where('id', $request->id)->firstOrFail()->update(['status' => $request->status]);
+        return redirect()->route('admin.orders');
     }
 }
