@@ -25,7 +25,7 @@
                 <li><a href="{{ route('admin.index') }}">Index</a></li>
                 <li><a href="{{ route('admin.users.index') }}">Users</a></li>
                 <li><a href="{{ route('admin.categories') }}">Categories</a></li>
-                <li><a href="{{ route('admin.products.create') }}">Products</a></li>
+                <li><a href="{{ route('admin.products') }}">Products</a></li>
                 <li><a href="{{ route('admin.products_query') }}">Products query</a></li>
             </ul>
         </div>

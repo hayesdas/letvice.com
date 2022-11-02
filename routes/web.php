@@ -84,8 +84,11 @@ Route::prefix('admin')->middleware('auth:admin')->group(function(){ // Дост�
         Route::post('logout', [\App\Http\Controllers\Admin\UserController::class, 'logout'])->name('logout');
     });
 
+    Route::get('/products', [AdminController::class, 'products'])->name('admin.products');
+    Route::get('/products/search', [AdminController::class, 'products_search'])->name('admin.products.search');
     Route::get('/products-query', [AdminController::class, 'products_query'])->name('admin.products_query');
     Route::post('/products/{id}/accept', [AdminController::class, 'product_accept'])->name('admin.products.accept');
     Route::post('/products/{id}/reject', [AdminController::class, 'product_reject'])->name('admin.products.reject');
+    Route::post('/products/{id}/delete', [AdminController::class, 'product_delete'])->name('admin.products.delete');
 });
 

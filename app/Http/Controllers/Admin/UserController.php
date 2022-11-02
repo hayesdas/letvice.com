@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\User;
 use App\Services\User\UserService;
 use Illuminate\Http\Request;
@@ -86,6 +87,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        Product::where('author', $id)->delete();
         User::findOrFail($id)->delete();
         return redirect()->back();
     }

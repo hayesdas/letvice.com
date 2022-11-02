@@ -55,6 +55,19 @@ class AdminController extends Controller
         ]);
     }
 
+    public function products(){
+        return view('admin.products.products', [
+            'products' => Product::all(),
+        ]);
+    }
+
+    public function products_search(Request $request){
+        $products = Product::where('name', 'LIKE', "%{$request->name}%")->get();
+        return view('admin.products.products', [
+            'products' => $products,
+        ]);
+    }
+
     public function product_create(){
         return view('admin.products.create', [
             'categories' => Category::all()
@@ -80,6 +93,11 @@ class AdminController extends Controller
         $product = Product::where('id', $id)->get()[0];
         $product->status = 'reject';
         $product->save();
+        return redirect()->back();
+    }
+
+    public function product_delete(Request $request, $id){
+        Product::where('id', $id)->delete();
         return redirect()->back();
     }
 

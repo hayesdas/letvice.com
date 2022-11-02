@@ -5,10 +5,10 @@
     <div class="container">
         <div class="row">
             <div class="col-5">
-                <div class="mb-3">All Products - <span class="badge badge-pill badge-info mr-5">{{ $productsAmount }}</span></div>
-                <form class="" action="{{route('admin.users.search')}}">
+                <div class="mb-3">All Products - <span class="badge badge-pill badge-info mr-5">{{ App\Models\Product::all()->count() }}</span> <a href="{{ route('admin.products.create') }}">create</a></div>
+                <form class="" action="{{route('admin.products.search')}}">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Search" name="login">
+                        <input type="text" class="form-control" placeholder="Search" name="name">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
                         </div>
@@ -32,15 +32,15 @@
                         <p class="card-text">Sale: {{ $product->sale }}%</p>
                         <p class="card-text">Total price: <? echo $product->price - ($product->price * ($product->sale / 100));?>$</p>
                         @endif
+                        @if(empty($product->sale))
+                        <p class="card-text">Sale: 0%</p>
+                        <p class="card-text">Total price: {{ $product->price }}$</p>
+                        @endif
                         <img src="/storage/{{ $product->img }}" alt="" class="shoes_img" style="height: 100px;margin-bottom: 20px;">
                         <div style="display: flex;">
-                            <form action="{{ route('admin.products.accept', ['id' => $product->id]) }}" method="post" onsubmit="return confirm('Вы уверены?')">
+                            <form action="{{ route('admin.products.delete', ['id' => $product->id]) }}" method="post" onsubmit="return confirm('Вы уверены?')">
                                 @csrf
-                                <button class="btn btn-submit" type="submit">Accept</button>
-                            </form>
-                            <form action="{{ route('admin.products.reject', ['id' => $product->id]) }}" method="post" onsubmit="return confirm('Вы уверены?')">
-                                @csrf
-                                <button class="btn btn-submit" type="submit">Reject</button>
+                                <button class="btn btn-submit" type="submit">Delete</button>
                             </form>
                         </div>
                     </div>
