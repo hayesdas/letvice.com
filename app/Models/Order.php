@@ -30,6 +30,6 @@ class Order extends Model
      * @var array
      */
     protected $casts = [
-        'products' => 'array',
+        'products' => 'object',
     ];
 }

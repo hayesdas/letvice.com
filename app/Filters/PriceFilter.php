@@ -2,13 +2,12 @@
 
 namespace App\Filters;
 
-use App\Filters\FilterInterface;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
 
 class PriceFilter implements FilterInterface{
 
-    public function filter($request, Builder $products_query)
+    public static function filter($request, $products_query)
     {
         if($request->filled('price_from')){
             if($request->price_from != '0'){
@@ -27,6 +26,24 @@ class PriceFilter implements FilterInterface{
         }
 
         return $products_query;
+    }
+
+    public static function view(){
+
+        return 'price_filter';
+
+            // 'Price From' => [
+            //     'type' => 'input',
+            //     'name' => 'price_from',
+            //     'placeholder' => 'Price From',
+            // ],
+            // 'Price To' => [
+            //     'type' => 'input',
+            //     'name' => 'price_to',
+            //     'placeholder' => 'Price To',
+            // ],
+        
+
     }
 
 }

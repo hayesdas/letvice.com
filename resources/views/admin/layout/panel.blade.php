@@ -27,6 +27,7 @@
                 <li><a href="{{ route('admin.categories') }}">Categories</a></li>
                 <li><a href="{{ route('admin.products') }}">Products</a></li>
                 <li><a href="{{ route('admin.products_query') }}">Products query</a></li>
+                <li><a href="{{ route('admin.orders') }}">Orders</a></li>
             </ul>
         </div>
         <div class="col-10">

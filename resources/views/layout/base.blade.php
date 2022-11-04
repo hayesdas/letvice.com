@@ -36,7 +36,7 @@
                 @if(Auth::check())
                     <a href="/logout" class="header_a">Logout</a>
                     <a href="/orders" class="header_a">Orders</a>
-                    @if(Auth::check())
+                    @if(Auth::user()->role === 'Seller')
                     <a href="/products/create" class="header_a">Create Product</a>
                     @endif
                     @else

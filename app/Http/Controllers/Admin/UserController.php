@@ -127,7 +127,7 @@ class UserController extends Controller
     {
         $orders = Order::all();
         $orders = $orders->map(function ($item) {
-            $products = [];;
+            $products = [];
             foreach ((array)((array)json_decode($item->products))['products'] as $product) {
                 $products[] = Product::findOrFail($product->id)->toArray() + (array)$product;
             }

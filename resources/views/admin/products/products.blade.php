@@ -26,6 +26,7 @@
                     <div class="card-body">
                         <p class="card-text">Name: {{ $product->name }}</p>
                         <p class="card-text">Description: {{ $product->name }}</p>
+                        <p class="card-text">Category: {{ $product->category }}</p>
                         <p class="card-text">Firm: {{ $product->firm }}</p>
                         <p class="card-text">Price: {{ $product->price }}$</p>
                         @if(!empty($product->sale))

@@ -1,35 +1,10 @@
+@include('layout.base')
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <title>Letvice</title>
-</head>
+@yield('head')
 <body>
     <div class="wrapper">
-        <header class="header flex">
-            <div class="logo">Letvice.com</div>
-            <div class="dropdown">
-                <a class="dropbtn">Categories</a>
-                <div class="dropdown-content">
-                    <?
-
-use Illuminate\Support\Facades\Auth;
-
- foreach($categories as $category): ?>
-                        <a href="/category/<?=$category->name?>"><?=$category->name?></a>
-                    <? endforeach ?>
-                </div>
-            </div>
-            <a href="/basket" class="header_a">Basket</a>
-        </header>
+        @yield('header')
         <? if(isset($products)): ?>
         <div class="basket-products">
             <? $sum = 0 ?>
@@ -99,11 +74,11 @@ use Illuminate\Support\Facades\Auth;
                         'm': '<?=md5(time()+3)?>',
                     },
                     success: function (response) {
-                        <? if(Auth::check()): ?>
+                        @if(Auth::check())
                             location.href = '/order?key=<?=md5(time())?>'
-                            <? else: ?>
+                            @else
                                 location.href = '/auth'
-                        <? endif?>
+                        @endif
                     }
                 });
             })

@@ -82,6 +82,8 @@ Route::prefix('admin')->middleware('auth:admin')->group(function(){ // Дост�
         Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->middleware('auth:admin');
         Route::get('user/search', [\App\Http\Controllers\Admin\UserController::class, 'search'])->name('users.search');
         Route::post('logout', [\App\Http\Controllers\Admin\UserController::class, 'logout'])->name('logout');
+        
+        // Route::get('/orders', [\App\Http\Controllers\Admin\UserController::class, 'orders'])->name('orders');
         Route::get('/orders', [\App\Http\Controllers\Admin\UserController::class, 'orders'])->name('orders');
         Route::post('/orders', [\App\Http\Controllers\Admin\UserController::class, 'ordersStatus'])->name('orders.status');
     });

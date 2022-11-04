@@ -13,6 +13,10 @@ class ProductsController extends Controller
 {
     public function index(Request $request){
 
+        if(Auth::user()->role != 'Seller'){
+            return redirect()->back();
+        }
+
         if(empty(Auth::user()->firm)){ // Если пользователь не создал фирму
 
             if(isset($request->creation)){ // Если идет создание фирмы
@@ -30,22 +34,28 @@ class ProductsController extends Controller
 
     public function create(ProductRequest $request, ProductService $productService){
 
+        // if(Auth::user()->role != 'Seller'){
+        //     return redirect()->back();
+        // }
+
         if(isset($request->creation)){ // Если пользователь отправил запрос на создание фирмы
 
-            $user = User::where('login', Auth::user()->login)->get()[0];
-            $user->firm = $request->firm;
-            $user->save();
-            return $user;
+
+            return 'ok';
+            // $user = User::where('login', Auth::user()->login)->get()[0];
+            // $user->firm = $request->firm;
+            // $user->save();
+            // return $user;
 
         }
 
         // Создание продукта
 
-        $return = $productService->create($request);
-        if($return === true){ // Если все хорошо
-            return redirect('/');
-        }
-        return view('products.create', ['error' => $return]);
+        // $return = $productService->create($request);
+        // if($return === true){ // Если все хорошо
+        //     return redirect('/');
+        // }
+        // return view('products.create', ['error' => $return]);
 
         
 

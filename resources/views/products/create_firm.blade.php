@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center vh-100">
             <div class="col-5 d-flex">
-                <form class="align-self-center mb-5" method="post">
+                <form action="" class="align-self-center mb-5" method="post">
                     @csrf
                     <div class="text-center mb-3">
                         <h1 class="h3 text-center">Seller-panel</h1>

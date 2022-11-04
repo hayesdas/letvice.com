@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table->string('address');
             $table->json('products');
             $table->string('total_price');
+            $table->string('status')->default('waiting');
             $table->timestamps();
         });
     }

@@ -5,5 +5,6 @@ namespace App\Filters;
 use Illuminate\Database\Eloquent\Builder;
 
 interface FilterInterface{
-    public function filter($request, Builder $query);
+    public static function filter($request, $query);
+    public static function view();
 }
