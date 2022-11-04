@@ -10,9 +10,8 @@
         <div class="filters">
             <div class="">Filters</div>
             <form action="" method="get" style="margin-bottom: 50px;">
-               
                 @foreach($filters as $filter)
-                    @include('layout/filters/{{$filter}}')
+                    @include('layout.filters.'.$filter)
                 @endforeach
                 <button type="submit">Search</button>
                 <a href="/" id="reset_filters">Reset</a>

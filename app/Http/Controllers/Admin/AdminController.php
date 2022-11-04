@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Filters\Filter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CommentCreateRequest;
 use App\Http\Requests\LoginRequest;
@@ -55,16 +56,22 @@ class AdminController extends Controller
         ]);
     }
 
-    public function products(){
+    public function products(Filter $filters){
         return view('admin.products.products', [
             'products' => Product::all(),
+            'filters' => $filters->view(),
+            'categories' => Category::all(),
         ]);
     }
 
-    public function products_search(Request $request){
-        $products = Product::where('name', 'LIKE', "%{$request->name}%")->get();
+    public function products_search(Request $request, Filter $filters){
+        $query = Product::where('name', 'LIKE', "%{$request->name}%");
+        $query = $filters->filter($request, $query);
+
         return view('admin.products.products', [
-            'products' => $products,
+            'products' => $query->get(),
+            'filters' => $filters->view(),
+            'categories' => Category::all(),
         ]);
     }
 
@@ -110,7 +117,7 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function categories(){
+    public function categories(Request $request){
         return view('admin.categories.categories', [
             'categories' => Category::all(),
         ]);

@@ -13,6 +13,9 @@
                             <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
                         </div>
                     </div>
+                    @foreach($filters as $filter)
+                        @include('layout.filters.'.$filter)
+                    @endforeach
                 </form>
             </div>
         </div>
